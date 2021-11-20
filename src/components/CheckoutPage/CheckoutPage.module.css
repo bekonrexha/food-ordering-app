@@ -30,9 +30,9 @@
 
 .actions button {
   font: inherit;
-  color: #5a1a01;
+  color: #f8f8f8;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #5a1a01;
   border: none;
   border-radius: 25px;
   padding: 0.5rem 2rem;
@@ -40,7 +40,7 @@
 
 .actions button:hover,
 .actions button:active {
-  background-color: #ffe6dc;
+  background-color: #ffffff;
 }
 
 .actions .submit {
@@ -62,3 +62,39 @@
   border-color: #aa0b20;
   background-color: #ffeff1;
 }
+
+.mainpage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.items {
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 5px solid #3f3f3f;
+  background-color: rgb(202, 189, 189);
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 30px;
+}
+.item1 {
+  text-align: center;
+  color: white;
+}
+.item2 {
+  display: flex;
+  justify-content: center;
+  color: white;
+
+}
+.amount {
+    font-weight: bold;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0.1rem 0.2rem;
+    border-radius: 30px;
+    color: #a70000;
+  }
