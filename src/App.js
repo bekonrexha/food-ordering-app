@@ -22,7 +22,10 @@ function App() {
       <Header onShowCart={showCartHandler} />
       <main>
         <Routes>
-          <Route path="/" element={<Meals />} />
+          <Route path="/" element={<Meals category="allitems"/>} />
+          <Route path="/pizzas" element={<Meals category="pizza" />} />
+          <Route path="/appetizers" element={<Meals category="appetizer" />} />
+          <Route path="/desserts" element={<Meals category="dessert" />} />
           <Route path="/checkoutpage" element={<CheckoutPage />} />
         </Routes>
       </main>

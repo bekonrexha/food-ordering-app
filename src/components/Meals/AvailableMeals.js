@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 import classes from "./AvailableMeals.module.css";
 import MealItem from "./MealItem";
 
-const AvailableMeals = () => {
+const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorState, setErrorState] = useState();
@@ -14,33 +14,42 @@ const AvailableMeals = () => {
         "https://food-ordering-app-21d93-default-rtdb.europe-west1.firebasedatabase.app/meals.json"
       );
 
-      if(!response.ok){
-        throw new Error('Something went wrong!');
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
       }
 
       const responseData = await response.json();
       const loadedMeals = [];
-
-      for (const key in responseData) {
-        loadedMeals.push({
-          id: key,
-          name: responseData[key].name,
-          description: responseData[key].description,
-          price: responseData[key].price,
-        });
+      if (props.category === "allitems") {
+        for (const key in responseData) {
+          loadedMeals.push({
+            id: key,
+            name: responseData[key].name,
+            description: responseData[key].description,
+            price: responseData[key].price,
+          });
+        }
+      } else {
+        for (const key in responseData) {
+          if (responseData[key].category === props.category) {
+            loadedMeals.push({
+              id: key,
+              name: responseData[key].name,
+              description: responseData[key].description,
+              price: responseData[key].price,
+            });
+          }
+        }
       }
       setMeals(loadedMeals);
       setIsLoading(false);
     };
 
-    
     fetchMeals().catch((error) => {
-      setIsLoading(false)
-      setErrorState(error.message)
-    })
-    
-
-  }, []);
+      setIsLoading(false);
+      setErrorState(error.message);
+    });
+  }, [props.category]);
 
   if (isLoading) {
     return (
