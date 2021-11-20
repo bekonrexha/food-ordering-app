@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
-
+import { useContext} from "react";
+import { Link } from "react-router-dom";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
-import Checkout from "./Checkout";
 import { Fragment } from "react";
 
 const Cart = (props) => {
-  const [isCheckout, setIsCheckout] = useState(false);
+  //const [isCheckout, setIsCheckout] = useState(false);
   const cartCtx = useContext(CartContext);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [didSubmit, setDidSubmit] = useState(false);
+
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [didSubmit, setDidSubmit] = useState(false);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
@@ -24,24 +24,25 @@ const Cart = (props) => {
     cartCtx.addItem(item);
   };
 
-  const orderHandler = () => {
-    setIsCheckout(true);
-  };
-  const submitHandler = async (userData) => {
-    setIsSubmitting(true);
-    await fetch(
-      "https://food-ordering-app-21d93-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartCtx.items,
-        }),
-      }
-    );
-    setIsSubmitting(false);
-    setDidSubmit(true);
-  };
+  // const orderHandler = () => {
+  //   setIsCheckout(true);
+  // };
+
+  // const submitHandler = async (userData) => {
+  //   setIsSubmitting(true);
+  //   await fetch(
+  //     "https://food-ordering-app-21d93-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         user: userData,
+  //         orderedItems: cartCtx.items,
+  //       }),
+  //     }
+  //   );
+  //   setIsSubmitting(false);
+  //   setDidSubmit(true);
+  // };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -65,9 +66,11 @@ const Cart = (props) => {
         Close
       </button>
       {hasItems && (
-        <button className={classes.button} onClick={orderHandler}>
-          Order
-        </button>
+        <Link to="/checkoutpage">
+          <button className={classes.button} onClick={props.onClose}>
+            Order
+          </button>
+        </Link>
       )}
     </div>
   );
@@ -79,20 +82,18 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && (
-        <Checkout onConfirm={submitHandler} onCancel={props.onClose} />
-      )}
-      {!isCheckout && modalActions}
+      
+      {modalActions}
     </Fragment>
   );
 
-  const isSubmittingModalContent = <p>Sending order data...</p>
-  const didSubmitModalContent = <p>Sucesfully sent the order!</p>
+  // const isSubmittingModalContent = <p>Sending order data...</p>;
+  // const didSubmitModalContent = <p>Sucesfully sent the order!</p>;
   return (
     <Modal onClose={props.onClose}>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {!isSubmitting && didSubmit && didSubmitModalContent}
+      {cartModalContent}
+      {/* {isSubmitting && isSubmittingModalContent}
+      {!isSubmitting && didSubmit && didSubmitModalContent} */}
     </Modal>
   );
 };
