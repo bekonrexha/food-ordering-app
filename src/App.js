@@ -5,6 +5,13 @@ import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
 import { Routes, Route } from "react-router-dom";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
+<<<<<<< Updated upstream
+=======
+import ThankyouPage from "./components/CheckoutPage/ThankyouPage";
+import Login from "./components/Authentication/Login";
+import Register from "./components/Authentication/Register";
+
+>>>>>>> Stashed changes
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -27,6 +34,12 @@ function App() {
           <Route path="/appetizers" element={<Meals category="appetizer" />} />
           <Route path="/desserts" element={<Meals category="dessert" />} />
           <Route path="/checkoutpage" element={<CheckoutPage />} />
+<<<<<<< Updated upstream
+=======
+          <Route path="/thankyoupage" element={<ThankyouPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+>>>>>>> Stashed changes
         </Routes>
       </main>
     </CartProvider>
