@@ -6,6 +6,8 @@ import CartProvider from "./store/CartProvider";
 import { Routes, Route, useLocation } from "react-router-dom";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import ThankyouPage from "./components/CheckoutPage/ThankyouPage";
+import Login from "./components/Authentication/Login";
+import Register from "./components/Authentication/Register";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
           <Route path="/desserts" element={<Meals category="dessert" />} />
           <Route path="/checkoutpage" element={<CheckoutPage />} />
           <Route path="/thankyoupage" element={<ThankyouPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
     </CartProvider>
