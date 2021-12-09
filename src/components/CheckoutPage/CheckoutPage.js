@@ -1,14 +1,17 @@
 import { useRef, useState, useContext } from "react";
 import CartContext from "../../store/cart-context";
 import classes from "./CheckoutPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
+
+
 const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
 
+
 const CheckoutPage = (props) => {
 
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
+ 
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -89,9 +92,9 @@ const navigate = useNavigate();
         }
       );
     };
+
     submitHandler(userData);
-    cartCtx.clearCart();
-    navigate('/');
+    navigate("/thankyoupage");
   };
 
   const nameControlClasses = `${classes.control} ${
