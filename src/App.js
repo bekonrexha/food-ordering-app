@@ -9,7 +9,6 @@ import ThankyouPage from "./components/CheckoutPage/ThankyouPage";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
-
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
 
