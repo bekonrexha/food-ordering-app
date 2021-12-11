@@ -1,8 +1,9 @@
-import classes from "./Register.module.css";
-import { useState } from "react/cjs/react.development";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react/cjs/react.development';
+import { useNavigate, Link  } from "react-router-dom";
+import "./Formclasses.css";
 
 const Register = () => {
+
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
@@ -75,38 +76,38 @@ const Register = () => {
     }
   };
 
-  return (
-    <div className={classes.mainclass}>
-      <h2 className={classes.firsts}>Register Form</h2>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <label htmlFor="email">
-          <b>Email</b>
-        </label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter Email"
-          required
-          onChange={emailHandler}
-        ></input>
-        {emailError && <p className={classes.wronginput}>*Incorrect Email!</p>}
-        <label htmlFor="password">
-          <b>Password</b>
-        </label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          required
-          onChange={pwHandler}
-        ></input>
-        {pwError && <p className={classes.wronginput}>*Incorrect Password!</p>}
-        <div className={classes.buttonpadding}>
-          <button className={classes.glow__on__hover}>Register</button>
+    return (
+      <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+        <Link to="/"><div class="goback">Go Back </div></Link>
+          <form class="login" onSubmit={submitHandler}>
+            <h1 class="loginformtag">Register</h1>
+            <div class="login__field">
+              <input type="text" class="login__input" placeholder="Email" onChange={emailHandler} />
+              {emailError && <p class="wronginput">*Please enter a valid Email!</p>}
+            </div>
+            <div class="login__field">
+              <input type="password" class="login__input" placeholder="Password" onChange={pwHandler} />
+              {pwError && <p class="wronginput">*Please enter a password that includes:
+              <br />  - 1 upper letter
+              <br />  - 1 lower letter
+              <br />  - 1 number
+              <br />  - 1 symbol
+              <br />  - and is longer than 7 characters</p>}
+            </div>
+            <button class="glow__on__hover" >Register</button>
+          </form>
         </div>
-      </form>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
     </div>
-  );
+    );
 };
 
 export default Register;

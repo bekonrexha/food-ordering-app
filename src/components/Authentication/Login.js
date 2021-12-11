@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
-import classes from './Login.module.css';
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useNavigate  } from "react-router-dom";
+import "./Formclasses.css";
 
 const Login = () => {
     const [email,setEmail] = useState("");
@@ -54,17 +54,30 @@ const Login = () => {
           });
     }
 
-    return (<div className={classes.mainclass}>
-        <h2 className={classes.firsts}>Login Form</h2>
-        <form className={classes.form} onSubmit={submitHandler}>
-            <label><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required onChange={emailHandler}></input>
-            <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pw" required onChange={pwHandler}></input>
-            <button className={classes.glow__on__hover} >Login</button>
-        </form>
-        <div ><Link to="/register" className={classes.register}>Register</Link></div>
-       
+    return (
+        <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+        <Link to="/"><div class="goback">Go Back </div></Link>
+          <form class="login" onSubmit={submitHandler}>
+            <h1 class="loginformtag">Login Form</h1>
+            <div class="login__field">
+              <input type="text" class="login__input" placeholder="Email" onChange={emailHandler} />
+            </div>
+            <div class="login__field">
+              <input type="password" class="login__input" placeholder="Password" required onChange={pwHandler} />
+            </div>
+            <button class="glow__on__hover" >Login</button>
+          </form>
+          <div class="registerbutton"><Link to="/register"><button class="glow__on__hover" >Register</button></Link></div>
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
     </div>)
 }
 
