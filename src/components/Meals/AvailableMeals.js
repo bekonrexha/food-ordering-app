@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import classes from "./AvailableMeals.module.css";
 import MealItem from "./MealItem";
+import SearchBar from "../UI/SearchBar";
 
 const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorState, setErrorState] = useState();
+  const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -21,23 +23,52 @@ const AvailableMeals = (props) => {
       const responseData = await response.json();
       const loadedMeals = [];
       if (props.category === "allitems") {
-        for (const key in responseData) {
-          loadedMeals.push({
-            id: key,
-            name: responseData[key].name,
-            description: responseData[key].description,
-            price: responseData[key].price,
-          });
-        }
-      } else {
-        for (const key in responseData) {
-          if (responseData[key].category === props.category) {
+        if (searchString === "") {
+          for (const key in responseData) {
             loadedMeals.push({
               id: key,
               name: responseData[key].name,
               description: responseData[key].description,
               price: responseData[key].price,
             });
+          }
+        } else {
+          for (const key in responseData) {
+            if (responseData[key].name.includes(searchString)) {
+              loadedMeals.push({
+                id: key,
+                name: responseData[key].name,
+                description: responseData[key].description,
+                price: responseData[key].price,
+              });
+            }
+          }
+        }
+      } else {
+        if (searchString === "") {
+          for (const key in responseData) {
+            if (responseData[key].category === props.category) {
+              loadedMeals.push({
+                id: key,
+                name: responseData[key].name,
+                description: responseData[key].description,
+                price: responseData[key].price,
+              });
+            }
+          }
+        } else {
+          for (const key in responseData) {
+            if (
+              responseData[key].name.includes(searchString) &&
+              responseData[key].category === props.category
+            ) {
+              loadedMeals.push({
+                id: key,
+                name: responseData[key].name,
+                description: responseData[key].description,
+                price: responseData[key].price,
+              });
+            }
           }
         }
       }
@@ -49,7 +80,7 @@ const AvailableMeals = (props) => {
       setIsLoading(false);
       setErrorState(error.message);
     });
-  }, [props.category]);
+  }, [props.category, searchString]);
 
   if (isLoading) {
     return (
@@ -67,6 +98,10 @@ const AvailableMeals = (props) => {
     );
   }
 
+  const getStringHandler = (value) => {
+    setSearchString(value);
+  };
+
   const mealsList = meals.map((meal) => (
     <MealItem
       key={meal.id}
@@ -80,6 +115,8 @@ const AvailableMeals = (props) => {
   return (
     <section className={classes.meals}>
       <Card>
+        <SearchBar getString={getStringHandler} />
+        <hr />
         <ul>{mealsList}</ul>
       </Card>
     </section>

@@ -1,0 +1,29 @@
+#search-bar {
+  text-align: left;
+  height: 46px;
+  border-radius: 48px;
+  border: 0.5px solid rgb(41, 27, 27);
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+.container2 {
+  margin-bottom: 2px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+#search-btn {
+  height: 46px;
+  border-top-right-radius: 48px;
+  border-bottom-right-radius: 48px;
+  padding: 15px;
+  font-size: 1.1em;
+  position: relative;
+  right: 15px;
+  border-left: 0.5px solid lightgrey;
+}
+.images {
+  width: 40px;
+  height: 100%;
+}
