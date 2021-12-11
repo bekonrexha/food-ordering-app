@@ -25,7 +25,7 @@ function App() {
   return (
     <CartProvider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
-      {!(location.pathname === "/thankyoupage") && <Header onShowCart={showCartHandler} />}
+      {!(location.pathname === "/thankyoupage" || location.pathname === "/login" || location.pathname === "/register") && <Header onShowCart={showCartHandler} />}
       <main>
         <Routes>
           <Route path="/" element={<Meals category="allitems"/>} exact/>
@@ -36,6 +36,7 @@ function App() {
           <Route path="/thankyoupage" element={<ThankyouPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
         </Routes>
       </main>
     </CartProvider>
