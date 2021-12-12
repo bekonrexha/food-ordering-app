@@ -113,7 +113,7 @@ const CheckoutPage = (props) => {
   return (
     <div className={classes.mainpage}>
       <div className={classes.item1}>
-        <h2>{cartItems}</h2>
+        <h2 className={classes.myclass}>{cartItems}</h2>
         <h2>Total Amount: {totalAmount}</h2>
       </div>
       <div className={classes.item2}>

@@ -1,23 +1,15 @@
 import "./SearchBar.css";
 import "font-awesome/css/font-awesome.min.css";
-import { useState } from "react";
 
 const SearchBar = (props) => {
-  const [searchText, setSearchText] = useState("");
-
   const getValue = (event) => {
     event.preventDefault();
-    setSearchText(event.target.value);
-    console.log(event.target.value);
-  };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    props.getString(searchText);
+    props.getString(event.target.value)
   };
 
   return (
     <div className="container2">
-      <form onSubmit={onSubmitHandler}>
+      <form>
         <div className="col-12 col-md-8 container">
           <input
             onChange={getValue}
@@ -25,7 +17,6 @@ const SearchBar = (props) => {
             id="search-bar"
             placeholder="Search..."
           />
-          <button className="fa fa-search" id="search-btn"></button>
         </div>
       </form>
     </div>

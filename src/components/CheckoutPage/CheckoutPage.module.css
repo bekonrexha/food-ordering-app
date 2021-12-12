@@ -70,6 +70,8 @@
 }
 
 .items {
+  margin: 0 auto;
+  width: 600px;
   font-size: medium;
   color: rgb(0, 0, 0);
   display: flex;
@@ -80,17 +82,23 @@
   background-color: rgb(202, 189, 189);
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 30px;
 }
 .item1 {
   text-align: center;
   color: white;
+  padding-bottom: 15px;
 }
 .item2 {
   display: flex;
   justify-content: center;
   color: white;
 
+}
+.myclass{
+  padding-bottom: 15px;
 }
 .amount {
     font-weight: bold;
